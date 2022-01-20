@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import org.springframework.data.annotation.Id;
 
@@ -16,7 +17,7 @@ import lombok.Setter;
 public class Lancamento {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idLancamento;
     private String nome;
     private Double valor;
@@ -25,7 +26,7 @@ public class Lancamento {
     private String comentario;
 
     public Lancamento() {
-        
+
     }
 
     public Lancamento(String nome, Double valor, Date data, Long idSubCategoria, String comentario) {

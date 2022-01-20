@@ -2,6 +2,7 @@ package com.modelo.api.controle.financeiro.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import org.springframework.data.annotation.Id;
 
@@ -14,13 +15,13 @@ import lombok.Setter;
 public class SubCategoria {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idSubCategoria;
     private String nome;
     private Long idCategoria;
 
     public SubCategoria () {
-        
+
     }
 
     public SubCategoria(String nome, Long idCategoria) {
