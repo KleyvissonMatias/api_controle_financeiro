@@ -1,13 +1,10 @@
 package com.modelo.api.controle.financeiro.entity;
 
-import javax.persistence.Entity;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
 public class Balanco {
     private Categoria categoria;
     private Double receita;

@@ -8,6 +8,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class BalancoService {
     
-    @Autowired
-    private BalancoRepository balancoRepository;
+    
 }
