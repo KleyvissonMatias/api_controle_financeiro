@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Balanco {
+
     private Categoria categoria;
     private Double receita;
     private Double despesa;

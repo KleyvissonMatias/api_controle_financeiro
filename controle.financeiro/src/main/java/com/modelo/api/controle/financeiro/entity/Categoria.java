@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+@Getter 
 @Setter
 @Entity
 @Table(name = "categoria")
@@ -27,6 +27,4 @@ public class Categoria {
     public Categoria(String nome) {
         this.nome = nome;
     }
-
-    
 }
