@@ -49,7 +49,7 @@ public class CategoriaController {
 
     @GetMapping(CATEGORIAS_ID)
     public ResponseEntity<Categoria> getCategoriaById(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId)
+            @PathVariable(value = "id") int CategoriaId)
             throws ResourceNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
@@ -76,7 +76,7 @@ public class CategoriaController {
 
     @PutMapping(CATEGORIAS_ID)
     public ResponseEntity<Categoria> updateCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId,
+            @PathVariable(value = "id") int CategoriaId,
             @Valid @RequestBody Categoria CategoriaDetails) throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
@@ -91,7 +91,7 @@ public class CategoriaController {
 
     @DeleteMapping(CATEGORIAS_ID)
     public Map<String, Boolean> deleteCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId)
+            @PathVariable(value = "id") int CategoriaId)
             throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();

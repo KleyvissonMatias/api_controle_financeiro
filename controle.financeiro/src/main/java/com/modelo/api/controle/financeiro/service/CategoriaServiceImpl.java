@@ -16,8 +16,8 @@ public class CategoriaServiceImpl implements IService<Categoria> {
     private CategoriaRepository categoriaRepository;
 
     @Override
-    public Categoria findOne(Long CategoriaId) {
-        return categoriaRepository.findById(CategoriaId).orElseThrow(() -> new ResourceNotFoundException("Categoria not found for this id :: " + CategoriaId));
+    public Categoria findOne(int CategoriaId) {
+        return categoriaRepository.findById(CategoriaId).orElseThrow(() -> new ResourceNotFoundException("Categoria com este ID não existe :: " + CategoriaId));
     }
     
     @Override
@@ -31,14 +31,14 @@ public class CategoriaServiceImpl implements IService<Categoria> {
     }
 
     @Override
-    public Categoria update(Long CategoriaId, Categoria CategoriaDetails) {
-        Categoria Categoria = categoriaRepository.findById(CategoriaId).orElseThrow(() -> new ResourceNotFoundException("Categoria not found for this id :: " + CategoriaId));
+    public Categoria update(int CategoriaId, Categoria CategoriaDetails) {
+        Categoria Categoria = categoriaRepository.findById(CategoriaId).orElseThrow(() -> new ResourceNotFoundException("Categoria com este ID não existe :: " + CategoriaId));
         Categoria.setNome(CategoriaDetails.getNome());
         return categoriaRepository.save(Categoria);
     }
 
     @Override
-    public void deleteById(Long CategoriaId) {
+    public void deleteById(int CategoriaId) {
         categoriaRepository.deleteById(CategoriaId);
     }
 }

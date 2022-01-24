@@ -19,18 +19,18 @@ public class Lancamento {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idLancamento;
+    private int idLancamento;
     private String nome;
     private Double valor;
     private Date data;
-    private Long idSubCategoria;
+    private int idSubCategoria;
     private String comentario;
 
     public Lancamento() {
 
     }
 
-    public Lancamento(String nome, Double valor, Date data, Long idSubCategoria, String comentario) {
+    public Lancamento(String nome, Double valor, Date data, int idSubCategoria, String comentario) {
         this.nome = nome;
         this.valor = valor;
         this.data = data;

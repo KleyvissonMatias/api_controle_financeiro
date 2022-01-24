@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface IService<T> {
     
-    T findOne(Long id);
+    T findOne(int id);
 
     List<T> findAll();
 
     T create(T entity);
 
-    T update(Long entityId, T entity);
+    T update(int entityId, T entity);
 
-    void deleteById(Long entityId);
+    void deleteById(int entityId);
 }

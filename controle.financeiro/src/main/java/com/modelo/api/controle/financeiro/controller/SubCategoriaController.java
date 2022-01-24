@@ -48,7 +48,7 @@ public class SubCategoriaController {
 
     @GetMapping(SUB_CATEGORIAS_ID)
     public ResponseEntity<SubCategoria> getSubCategoriaById(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long SubCategoriaId)
+            @PathVariable(value = "id") int SubCategoriaId)
             throws ResourceNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
@@ -75,7 +75,7 @@ public class SubCategoriaController {
 
     @PutMapping(SUB_CATEGORIAS_ID)
     public ResponseEntity<SubCategoria> updateSubCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long SubCategoriaId,
+            @PathVariable(value = "id") int SubCategoriaId,
             @Valid @RequestBody SubCategoria SubCategoriaDetails) throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
@@ -90,7 +90,7 @@ public class SubCategoriaController {
 
     @DeleteMapping(SUB_CATEGORIAS_ID)
     public Map<String, Boolean> deleteSubCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long SubCategoriaId)
+            @PathVariable(value = "id") int SubCategoriaId)
             throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();

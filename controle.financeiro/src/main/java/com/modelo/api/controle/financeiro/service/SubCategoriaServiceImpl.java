@@ -16,9 +16,9 @@ public class SubCategoriaServiceImpl implements IService<SubCategoria>{
     private SubCategoriaRepository subCategoriaRepository;
 
     @Override
-    public SubCategoria findOne(Long id) {
+    public SubCategoria findOne(int id) {
         
-        return subCategoriaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("SubCategoria not found for this id :: " + id));
+        return subCategoriaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("SubCategoria com este ID não existe :: " + id));
     }
 
     @Override
@@ -34,15 +34,15 @@ public class SubCategoriaServiceImpl implements IService<SubCategoria>{
     }
 
     @Override
-    public SubCategoria update(Long entityId, SubCategoria entity) {
-        SubCategoria subCategoria = subCategoriaRepository.findById(entityId).orElseThrow(() -> new ResourceNotFoundException("SubCategoria not found for this id :: " + entityId));
+    public SubCategoria update(int entityId, SubCategoria entity) {
+        SubCategoria subCategoria = subCategoriaRepository.findById(entityId).orElseThrow(() -> new ResourceNotFoundException("SubCategoria com este ID não existe :: " + entityId));
         subCategoria.setIdCategoria(entity.getIdCategoria());
         subCategoria.setNome(entity.getNome());
         return subCategoriaRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Long entityId) {
+    public void deleteById(int entityId) {
         subCategoriaRepository.deleteById(entityId);
     }
 }

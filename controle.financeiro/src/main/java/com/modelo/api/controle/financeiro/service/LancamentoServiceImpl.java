@@ -16,9 +16,9 @@ public class LancamentoServiceImpl implements IService<Lancamento>{
     private LancamentoRepository lancamentoRepository;
 
     @Override
-    public Lancamento findOne(Long id) {
+    public Lancamento findOne(int id) {
         
-        return lancamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Lançamento not found for this id :: " + id));
+        return lancamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Lançamento com este ID não existe :: " + id));
     }
 
     @Override
@@ -34,8 +34,8 @@ public class LancamentoServiceImpl implements IService<Lancamento>{
     }
 
     @Override
-    public Lancamento update(Long entityId, Lancamento entity) {
-        Lancamento lancamento = lancamentoRepository.findById(entityId).orElseThrow(() -> new ResourceNotFoundException("Lançamento not found for this id :: " + entityId));
+    public Lancamento update(int entityId, Lancamento entity) {
+        Lancamento lancamento = lancamentoRepository.findById(entityId).orElseThrow(() -> new ResourceNotFoundException("Lançamento com este ID não existe :: " + entityId));
         lancamento.setNome(entity.getNome());
         lancamento.setValor(entity.getValor());
         lancamento.setData(entity.getData());
@@ -45,7 +45,7 @@ public class LancamentoServiceImpl implements IService<Lancamento>{
     }
 
     @Override
-    public void deleteById(Long entityId) {
+    public void deleteById(int entityId) {
         lancamentoRepository.deleteById(entityId);
     }
 }

@@ -17,15 +17,15 @@ public class SubCategoria {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idSubCategoria;
+    private int idSubCategoria;
     private String nome;
-    private Long idCategoria;
+    private int idCategoria;
 
     public SubCategoria () {
 
     }
 
-    public SubCategoria(String nome, Long idCategoria) {
+    public SubCategoria(String nome, int idCategoria) {
         this.nome = nome;
         this.idCategoria = idCategoria;
     }

@@ -48,7 +48,7 @@ public class LancamentoController {
 
     @GetMapping(LANCAMENTOS_ID)
     public ResponseEntity<Lancamento> getLancamentoById(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long LancamentoId)
+            @PathVariable(value = "id") int LancamentoId)
             throws ResourceNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
@@ -75,7 +75,7 @@ public class LancamentoController {
 
     @PutMapping(LANCAMENTOS_ID)
     public ResponseEntity<Lancamento> updateLancamento(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long LancamentoId,
+            @PathVariable(value = "id") int LancamentoId,
             @Valid @RequestBody Lancamento LancamentoDetails) throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
@@ -90,7 +90,7 @@ public class LancamentoController {
 
     @DeleteMapping(LANCAMENTOS_ID)
     public Map<String, Boolean> deleteLancamento(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long LancamentoId)
+            @PathVariable(value = "id") int LancamentoId)
             throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
