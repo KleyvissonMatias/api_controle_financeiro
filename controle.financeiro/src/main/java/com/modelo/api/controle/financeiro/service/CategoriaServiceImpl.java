@@ -10,19 +10,19 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoriaServiceImpl implements ICategoriaService<Categoria> {
+public class CategoriaServiceImpl implements IService<Categoria> {
    
     @Autowired
     private CategoriaRepository categoriaRepository;
 
     @Override
-    public List<Categoria> findAll() {
-        return categoriaRepository.findAll();
-    }
-
-    @Override
     public Categoria findOne(Long CategoriaId) {
         return categoriaRepository.findById(CategoriaId).orElseThrow(() -> new ResourceNotFoundException("Categoria not found for this id :: " + CategoriaId));
+    }
+    
+    @Override
+    public List<Categoria> findAll() {
+        return categoriaRepository.findAll();
     }
 
     @Override

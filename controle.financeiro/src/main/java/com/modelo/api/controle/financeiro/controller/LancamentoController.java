@@ -1,8 +1,7 @@
 package com.modelo.api.controle.financeiro.controller;
-
-import static com.modelo.api.controle.financeiro.constants.endpoint.CATEGORIAS;
-import static com.modelo.api.controle.financeiro.constants.endpoint.CATEGORIAS_ID;
 import static com.modelo.api.controle.financeiro.constants.endpoint.URL_REQUEST_MAPPING;
+import static com.modelo.api.controle.financeiro.constants.endpoint.LANCAMENTOS;
+import static com.modelo.api.controle.financeiro.constants.endpoint.LANCAMENTOS_ID;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +9,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import com.modelo.api.controle.financeiro.entity.Categoria;
-import com.modelo.api.controle.financeiro.service.CategoriaServiceImpl;
+import com.modelo.api.controle.financeiro.entity.Lancamento;
+import com.modelo.api.controle.financeiro.service.LancamentoServiceImpl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -29,75 +28,75 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(URL_REQUEST_MAPPING)
-public class CategoriaController {
-
+public class LancamentoController {
+    
     @Value("${api.key}")
     private String apiKey;
 
-    private CategoriaServiceImpl categoriaService;
+    private LancamentoServiceImpl lancamentoService;
 
-    @GetMapping(CATEGORIAS)
-    public List<Categoria> getAllCategorias(@RequestHeader(name = "api-key") String headerApiKey) {
+    @GetMapping(LANCAMENTOS)
+    public List<Lancamento> getAllLancamentos(@RequestHeader(name = "api-key") String headerApiKey) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            return categoriaService.findAll();
+            return lancamentoService.findAll();
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @GetMapping(CATEGORIAS_ID)
-    public ResponseEntity<Categoria> getCategoriaById(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId)
+    @GetMapping(LANCAMENTOS_ID)
+    public ResponseEntity<Lancamento> getLancamentoById(@RequestHeader(name = "api-key") String headerApiKey,
+            @PathVariable(value = "id") Long LancamentoId)
             throws ResourceNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            Categoria Categoria = categoriaService.findOne(CategoriaId);
-            return ResponseEntity.ok().body(Categoria);
+            Lancamento lancamento = lancamentoService.findOne(LancamentoId);
+            return ResponseEntity.ok().body(lancamento);
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @PostMapping(CATEGORIAS)
-    public Categoria createCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @Valid @RequestBody Categoria Categoria) {
+    @PostMapping(LANCAMENTOS)
+    public Lancamento creatLancamento(@RequestHeader(name = "api-key") String headerApiKey,
+            @Valid @RequestBody Lancamento Lancamento) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            return categoriaService.create(Categoria);
+            return lancamentoService.create(Lancamento);
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @PutMapping(CATEGORIAS_ID)
-    public ResponseEntity<Categoria> updateCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId,
-            @Valid @RequestBody Categoria CategoriaDetails) throws ResourceNotFoundException {
+    @PutMapping(LANCAMENTOS_ID)
+    public ResponseEntity<Lancamento> updateLancamento(@RequestHeader(name = "api-key") String headerApiKey,
+            @PathVariable(value = "id") Long LancamentoId,
+            @Valid @RequestBody Lancamento LancamentoDetails) throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            Categoria Categoria = categoriaService.update(CategoriaId, CategoriaDetails);
-            return ResponseEntity.ok().body(Categoria);
+            Lancamento Lancamento = lancamentoService.update(LancamentoId, LancamentoDetails);
+            return ResponseEntity.ok().body(Lancamento);
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @DeleteMapping(CATEGORIAS_ID)
-    public Map<String, Boolean> deleteCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId)
+    @DeleteMapping(LANCAMENTOS_ID)
+    public Map<String, Boolean> deleteLancamento(@RequestHeader(name = "api-key") String headerApiKey,
+            @PathVariable(value = "id") Long LancamentoId)
             throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            categoriaService.deleteById(CategoriaId);
+            lancamentoService.deleteById(LancamentoId);
             Map<String, Boolean> response = new HashMap<>();
             response.put("deleted", Boolean.TRUE);
             return response;

@@ -2,7 +2,7 @@ package com.modelo.api.controle.financeiro.service;
 
 import java.util.List;
 
-public interface ICategoriaService<T> {
+public interface IService<T> {
     
     T findOne(Long id);
 

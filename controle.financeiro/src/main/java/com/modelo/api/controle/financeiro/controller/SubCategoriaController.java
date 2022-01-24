@@ -1,8 +1,7 @@
 package com.modelo.api.controle.financeiro.controller;
-
-import static com.modelo.api.controle.financeiro.constants.endpoint.CATEGORIAS;
-import static com.modelo.api.controle.financeiro.constants.endpoint.CATEGORIAS_ID;
 import static com.modelo.api.controle.financeiro.constants.endpoint.URL_REQUEST_MAPPING;
+import static com.modelo.api.controle.financeiro.constants.endpoint.SUB_CATEGORIAS;
+import static com.modelo.api.controle.financeiro.constants.endpoint.SUB_CATEGORIAS_ID;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +9,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import com.modelo.api.controle.financeiro.entity.Categoria;
-import com.modelo.api.controle.financeiro.service.CategoriaServiceImpl;
+import com.modelo.api.controle.financeiro.entity.SubCategoria;
+import com.modelo.api.controle.financeiro.service.SubCategoriaServiceImpl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -29,75 +28,75 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(URL_REQUEST_MAPPING)
-public class CategoriaController {
-
+public class SubCategoriaController {
+    
     @Value("${api.key}")
     private String apiKey;
 
-    private CategoriaServiceImpl categoriaService;
+    private SubCategoriaServiceImpl subCategoriaService;
 
-    @GetMapping(CATEGORIAS)
-    public List<Categoria> getAllCategorias(@RequestHeader(name = "api-key") String headerApiKey) {
+    @GetMapping(SUB_CATEGORIAS)
+    public List<SubCategoria> getAllSubCategorias(@RequestHeader(name = "api-key") String headerApiKey) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            return categoriaService.findAll();
+            return subCategoriaService.findAll();
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @GetMapping(CATEGORIAS_ID)
-    public ResponseEntity<Categoria> getCategoriaById(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId)
+    @GetMapping(SUB_CATEGORIAS_ID)
+    public ResponseEntity<SubCategoria> getSubCategoriaById(@RequestHeader(name = "api-key") String headerApiKey,
+            @PathVariable(value = "id") Long SubCategoriaId)
             throws ResourceNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            Categoria Categoria = categoriaService.findOne(CategoriaId);
-            return ResponseEntity.ok().body(Categoria);
+            SubCategoria SubCategoria = subCategoriaService.findOne(SubCategoriaId);
+            return ResponseEntity.ok().body(SubCategoria);
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @PostMapping(CATEGORIAS)
-    public Categoria createCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @Valid @RequestBody Categoria Categoria) {
+    @PostMapping(SUB_CATEGORIAS)
+    public SubCategoria creatSubCategoria(@RequestHeader(name = "api-key") String headerApiKey,
+            @Valid @RequestBody SubCategoria SubCategoria) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            return categoriaService.create(Categoria);
+            return subCategoriaService.create(SubCategoria);
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @PutMapping(CATEGORIAS_ID)
-    public ResponseEntity<Categoria> updateCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId,
-            @Valid @RequestBody Categoria CategoriaDetails) throws ResourceNotFoundException {
+    @PutMapping(SUB_CATEGORIAS_ID)
+    public ResponseEntity<SubCategoria> updateSubCategoria(@RequestHeader(name = "api-key") String headerApiKey,
+            @PathVariable(value = "id") Long SubCategoriaId,
+            @Valid @RequestBody SubCategoria SubCategoriaDetails) throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            Categoria Categoria = categoriaService.update(CategoriaId, CategoriaDetails);
-            return ResponseEntity.ok().body(Categoria);
+            SubCategoria SubCategoria = subCategoriaService.update(SubCategoriaId, SubCategoriaDetails);
+            return ResponseEntity.ok().body(SubCategoria);
         } else {
             throw new ResourceNotFoundException("Api key inválida");
         }
     }
 
-    @DeleteMapping(CATEGORIAS_ID)
-    public Map<String, Boolean> deleteCategoria(@RequestHeader(name = "api-key") String headerApiKey,
-            @PathVariable(value = "id") Long CategoriaId)
+    @DeleteMapping(SUB_CATEGORIAS_ID)
+    public Map<String, Boolean> deleteSubCategoria(@RequestHeader(name = "api-key") String headerApiKey,
+            @PathVariable(value = "id") Long SubCategoriaId)
             throws ResourceNotFoundException {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("api-key", apiKey);
         if (headerApiKey.equals(apiKey)) {
-            categoriaService.deleteById(CategoriaId);
+            subCategoriaService.deleteById(SubCategoriaId);
             Map<String, Boolean> response = new HashMap<>();
             response.put("deleted", Boolean.TRUE);
             return response;
