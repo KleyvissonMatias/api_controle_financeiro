@@ -32,7 +32,7 @@ spring.datasource.password=sua_senha
 
 1. Clone o repositório: `git clone https://github.com/seu-usuario/api_controle_financeiro.git`
 2. Navegue até o diretório do projeto: `cd api_controle_financeiro`
-3. Execute a aplicação: `mvn spring-boot:run`
+3. Execute a aplicação: `mvn clean install && run`
 
 A API estará disponível em `http://localhost:8080`.
 
