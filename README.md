@@ -9,16 +9,16 @@ A API Controle Financeiro foi desenvolvida para fornecer funcionalidades essenci
 ## Tecnologias Utilizadas
 
 - Java 11
-- Maven
-- MySQL
+- Maven 3+
+- MySQL 8.0
 
 ## Configuração do Ambiente
 
 Certifique-se de ter as seguintes ferramentas instaladas antes de executar a aplicação:
 
 - Java JDK 11
-- Maven
-- MySQL Server
+- Maven 3+
+- MySQL Server 8.0
 
 Além disso, é necessário configurar as credenciais do banco de dados no arquivo `application.properties`.
 
